@@ -1,6 +1,6 @@
 # Teleport Sync Manager
 
-A TUI tool for managing Guild Wars 2 teleport configurations.
+A tool for managing Guild Wars 2 teleport configurations.
 
 ![Screenshot](image.png)
 
@@ -16,3 +16,5 @@ A TUI tool for managing Guild Wars 2 teleport configurations.
 
 Settings are stored in `config.toml` in the same folder as the executable.
 
+## Notes
+Requires a GW2 Restart in order to load the new teleport configurations
