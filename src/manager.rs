@@ -60,7 +60,12 @@ impl TeleportManager {
     /// Add a new teleport group
     pub fn add_group(&mut self, group: TeleportGroup) -> Result<()> {
         // Check if group with same name already exists
-        if self.config.teleport_groups.iter().any(|g| g.name == group.name) {
+        if self
+            .config
+            .teleport_groups
+            .iter()
+            .any(|g| g.name == group.name)
+        {
             return Err(TeleportError::GroupAlreadyExists(group.name));
         }
         self.config.teleport_groups.push(group);
@@ -75,7 +80,7 @@ impl TeleportManager {
             .iter()
             .position(|g| g.name == name)
             .ok_or_else(|| TeleportError::GroupNotFound(name.to_string()))?;
-        
+
         Ok(self.config.teleport_groups.remove(index))
     }
 
@@ -87,7 +92,7 @@ impl TeleportManager {
             .iter()
             .find(|g| g.name == name)
             .ok_or_else(|| TeleportError::GroupNotFound(name.to_string()))?;
-        
+
         let mut hasher = DefaultHasher::new();
         // Hash the serialized JSON representation for consistency
         let json = serde_json::to_string(group).unwrap();
@@ -112,7 +117,10 @@ impl TeleportManager {
 
     /// Get a mutable reference to a specific teleport group by name
     pub fn get_group_mut(&mut self, name: &str) -> Option<&mut TeleportGroup> {
-        self.config.teleport_groups.iter_mut().find(|g| g.name == name)
+        self.config
+            .teleport_groups
+            .iter_mut()
+            .find(|g| g.name == name)
     }
 
     /// Get a reference to the entire configuration
@@ -136,4 +144,3 @@ impl Default for TeleportManager {
         Self::new()
     }
 }
-

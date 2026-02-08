@@ -1,6 +1,5 @@
-mod provider;
 mod github;
+mod provider;
 
-pub use provider::RemoteProvider;
 pub use github::GitHubProvider;
-
+pub use provider::RemoteProvider;

@@ -1,5 +1,5 @@
-use crate::types::TeleportGroup;
 use crate::Result;
+use crate::types::TeleportGroup;
 
 /// Trait for fetching teleport groups from a remote source
 #[async_trait::async_trait]
@@ -13,4 +13,3 @@ pub trait RemoteProvider: Send + Sync {
     /// Fetch multiple groups at once
     async fn fetch_groups(&self, names: &[String]) -> Result<Vec<TeleportGroup>>;
 }
-

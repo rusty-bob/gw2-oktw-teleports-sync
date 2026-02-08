@@ -1,4 +1,3 @@
 mod state;
 
-pub use state::{SyncStateManager, SyncStatus, GroupSyncState};
-
+pub use state::{GroupSyncState, SyncStateManager, SyncStatus};

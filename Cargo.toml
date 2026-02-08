@@ -2,9 +2,6 @@
 name = "tp_sync"
 version = "0.1.0"
 edition = "2024"
-authors = ["Your Name <your.email@example.com>"]
-description = "A TUI application for syncing Guild Wars 2 teleport configurations"
-repository = "https://github.com/yourusername/tp_sync"
 license = "MIT OR Apache-2.0"
 keywords = ["gw2", "guild-wars-2", "teleport", "tui", "sync"]
 categories = ["command-line-utilities", "games"]
@@ -13,7 +10,6 @@ categories = ["command-line-utilities", "games"]
 anyhow = "1.0.101"
 async-trait = "0.1.89"
 crossterm = "0.29.0"
-directories = "6.0.0"
 futures = "0.3.31"
 ratatui = "0.30.0"
 reqwest = { version = "0.13.2", features = ["json"] }

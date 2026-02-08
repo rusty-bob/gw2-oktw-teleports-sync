@@ -83,20 +83,17 @@ async fn run_app<B: ratatui::backend::Backend>(
 ) -> tp_sync::Result<()> {
     loop {
         terminal.draw(|f| render(f, app)).map_err(|e| {
-            tp_sync::TeleportError::IoError(io::Error::new(
-                io::ErrorKind::Other,
-                format!("Terminal draw error: {}", e),
-            ))
+            tp_sync::TeleportError::IoError(io::Error::other(format!("Terminal draw error: {}", e)))
         })?;
 
-        if event::poll(Duration::from_millis(100))? {
-            if let Event::Key(key) = event::read()? {
-                // Only process key press events, ignore key release
-                if key.kind == KeyEventKind::Press {
-                    if let Some(AppEvent::Quit) = handle_key_event(app, key).await? {
-                        return Ok(());
-                    }
-                }
+        if event::poll(Duration::from_millis(100))?
+            && let Event::Key(key) = event::read()?
+        {
+            // Only process key press events, ignore key release
+            if key.kind == KeyEventKind::Press
+                && let Some(AppEvent::Quit) = handle_key_event(app, key).await?
+            {
+                return Ok(());
             }
         }
     }

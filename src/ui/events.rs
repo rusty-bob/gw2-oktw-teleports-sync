@@ -1,5 +1,5 @@
-use crate::ui::{App, AppMode};
 use crate::Result;
+use crate::ui::{App, AppMode};
 use crossterm::event::{KeyCode, KeyEvent};
 
 pub enum AppEvent {
@@ -76,4 +76,3 @@ async fn handle_confirm_install(
         _ => Ok(None),
     }
 }
-

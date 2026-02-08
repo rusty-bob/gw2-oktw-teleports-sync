@@ -32,11 +32,12 @@ impl AppConfig {
         }
 
         let content = std::fs::read_to_string(&path)?;
-        let config: Self = toml::from_str(&content)
-            .map_err(|e| crate::TeleportError::IoError(std::io::Error::new(
+        let config: Self = toml::from_str(&content).map_err(|e| {
+            crate::TeleportError::IoError(std::io::Error::new(
                 std::io::ErrorKind::InvalidData,
                 format!("Failed to parse config: {}", e),
-            )))?;
+            ))
+        })?;
 
         Ok(Some(config))
     }
@@ -50,26 +51,28 @@ impl AppConfig {
             std::fs::create_dir_all(parent)?;
         }
 
-        let content = toml::to_string_pretty(self)
-            .map_err(|e| crate::TeleportError::IoError(std::io::Error::new(
+        let content = toml::to_string_pretty(self).map_err(|e| {
+            crate::TeleportError::IoError(std::io::Error::new(
                 std::io::ErrorKind::InvalidData,
                 format!("Failed to serialize config: {}", e),
-            )))?;
+            ))
+        })?;
         std::fs::write(&path, content)?;
 
         Ok(())
     }
 
-    /// Get config file path (e.g., ~/.config/tp_sync/config.toml)
+    /// Get config file path (in the same directory as the executable)
     fn config_path() -> crate::Result<PathBuf> {
-        let config_dir = directories::ProjectDirs::from("", "", "tp_sync").ok_or_else(|| {
+        let exe_path = std::env::current_exe()?;
+        let exe_dir = exe_path.parent().ok_or_else(|| {
             crate::TeleportError::IoError(std::io::Error::new(
                 std::io::ErrorKind::NotFound,
-                "Could not determine config directory",
+                "Could not determine executable directory",
             ))
         })?;
 
-        Ok(config_dir.config_dir().join("config.toml"))
+        Ok(exe_dir.join("config.toml"))
     }
 
     /// Create a new config with the given teleport.json path
@@ -99,4 +102,3 @@ impl AppConfig {
         Ok(())
     }
 }
-

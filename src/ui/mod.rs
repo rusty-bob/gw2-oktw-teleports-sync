@@ -1,8 +1,7 @@
 mod app;
-mod render;
 mod events;
+mod render;
 
-pub use app::{App, Pane, AppMode};
+pub use app::{App, AppMode, Pane};
+pub use events::{AppEvent, handle_key_event};
 pub use render::render;
-pub use events::{handle_key_event, AppEvent};
-

@@ -154,18 +154,18 @@ impl App {
     }
 
     pub fn handle_delete(&mut self) {
-        if matches!(self.active_pane, Pane::Local) {
-            if let Some(group_name) = self.selected_group() {
-                self.mode = AppMode::ConfirmDelete(group_name.clone());
-            }
+        if matches!(self.active_pane, Pane::Local)
+            && let Some(group_name) = self.selected_group()
+        {
+            self.mode = AppMode::ConfirmDelete(group_name.clone());
         }
     }
 
     pub fn handle_space(&mut self) {
-        if matches!(self.active_pane, Pane::Remote) {
-            if let Some(group_name) = self.selected_group() {
-                self.mode = AppMode::ConfirmInstall(group_name.clone());
-            }
+        if matches!(self.active_pane, Pane::Remote)
+            && let Some(group_name) = self.selected_group()
+        {
+            self.mode = AppMode::ConfirmInstall(group_name.clone());
         }
     }
 

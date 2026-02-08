@@ -56,17 +56,17 @@ impl RemoteProvider for GitHubProvider {
             .send()
             .await
             .map_err(|e| {
-                TeleportError::IoError(std::io::Error::new(
-                    std::io::ErrorKind::Other,
-                    format!("Failed to fetch from GitHub: {}", e),
-                ))
+                TeleportError::IoError(std::io::Error::other(format!(
+                    "Failed to fetch from GitHub: {}",
+                    e
+                )))
             })?;
 
         if !response.status().is_success() {
-            return Err(TeleportError::IoError(std::io::Error::new(
-                std::io::ErrorKind::Other,
-                format!("GitHub API returned status: {}", response.status()),
-            )));
+            return Err(TeleportError::IoError(std::io::Error::other(format!(
+                "GitHub API returned status: {}",
+                response.status()
+            ))));
         }
 
         let files: Vec<GitHubFile> = response.json().await.map_err(|e| {
@@ -100,10 +100,10 @@ impl RemoteProvider for GitHubProvider {
             .send()
             .await
             .map_err(|e| {
-                TeleportError::IoError(std::io::Error::new(
-                    std::io::ErrorKind::Other,
-                    format!("Failed to fetch group from GitHub: {}", e),
-                ))
+                TeleportError::IoError(std::io::Error::other(format!(
+                    "Failed to fetch group from GitHub: {}",
+                    e
+                )))
             })?;
 
         if !response.status().is_success() {
