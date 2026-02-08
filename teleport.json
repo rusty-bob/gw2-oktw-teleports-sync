@@ -1,0 +1,404 @@
+{
+  "main_window": {
+    "visible": false,
+    "pos": [
+      1654.0,
+      133.0
+    ],
+    "size": [
+      434.0,
+      389.0
+    ]
+  },
+  "key_binds": [
+    [
+      "TeleportToCursor",
+      {
+        "keys": [
+          17,
+          null,
+          null
+        ]
+      }
+    ]
+  ],
+  "teleport_groups": [
+    {
+      "name": "Homestead",
+      "teleports": [
+        {
+          "name": "Fish 1",
+          "coordinates": [
+            2904.6748,
+            -6188.8384,
+            565.67334
+          ],
+          "map": 1558,
+          "tooltip": null
+        },
+        {
+          "name": "Fish 2",
+          "coordinates": [
+            6299.9873,
+            -8326.655,
+            480.47214
+          ],
+          "map": 1558,
+          "tooltip": null
+        },
+        {
+          "name": "Fish 3",
+          "coordinates": [
+            -3455.6316,
+            -71.53459,
+            559.55133
+          ],
+          "map": 1558,
+          "tooltip": null
+        },
+        {
+          "name": "Fish 4",
+          "coordinates": [
+            -3446.6133,
+            902.7815,
+            514.58777
+          ],
+          "map": 1558,
+          "tooltip": null
+        },
+        {
+          "name": "Fish 5",
+          "coordinates": [
+            -5513.329,
+            -3094.8877,
+            575.34076
+          ],
+          "map": 1558,
+          "tooltip": null
+        },
+        {
+          "name": "Fish 6",
+          "coordinates": [
+            -4544.779,
+            4562.3374,
+            16.978596
+          ],
+          "map": 1558,
+          "tooltip": null
+        }
+      ]
+    },
+    {
+      "name": "Skywatch Archipelago Arcane Chests",
+      "teleports": [
+        {
+          "name": "Greater Arcane Chest",
+          "coordinates": [
+            21225.621,
+            -17925.81,
+            1122.2806
+          ],
+          "map": 1510,
+          "tooltip": null
+        },
+        {
+          "name": "Greater Arcane Chest 2",
+          "coordinates": [
+            20134.957,
+            -1525.1978,
+            10852.316
+          ],
+          "map": 1510,
+          "tooltip": null
+        },
+        {
+          "name": "Greater Arcane Chest 3",
+          "coordinates": [
+            23126.14,
+            17559.133,
+            10888.797
+          ],
+          "map": 1510,
+          "tooltip": null
+        },
+        {
+          "name": "Greater Arcane Chest 4",
+          "coordinates": [
+            3198.6904,
+            -1655.0233,
+            17449.62
+          ],
+          "map": 1510,
+          "tooltip": null
+        },
+        {
+          "name": "Greater Arcane Chest 5",
+          "coordinates": [
+            3817.9622,
+            2078.8738,
+            25173.514
+          ],
+          "map": 1510,
+          "tooltip": null
+        },
+        {
+          "name": "Greater Arcane Chest 6",
+          "coordinates": [
+            468.9364,
+            -21877.156,
+            9995.726
+          ],
+          "map": 1510,
+          "tooltip": null
+        },
+        {
+          "name": "Greater Arcane Chest 7",
+          "coordinates": [
+            -35125.133,
+            3916.42,
+            21799.998
+          ],
+          "map": 1510,
+          "tooltip": null
+        },
+        {
+          "name": "Greater Arcane Chest 8",
+          "coordinates": [
+            -27337.996,
+            -10603.252,
+            24312.49
+          ],
+          "map": 1510,
+          "tooltip": null
+        },
+        {
+          "name": "Greater Arcane Chest 9",
+          "coordinates": [
+            424.44,
+            15723.13,
+            14307.939
+          ],
+          "map": 1510,
+          "tooltip": null
+        },
+        {
+          "name": "Greater Arcane Chest 10",
+          "coordinates": [
+            40875.86,
+            13812.725,
+            6967.6543
+          ],
+          "map": 1510,
+          "tooltip": null
+        },
+        {
+          "name": "Greater Arcane Chest 11",
+          "coordinates": [
+            -29296.096,
+            19928.965,
+            34082.707
+          ],
+          "map": 1510,
+          "tooltip": null
+        },
+        {
+          "name": "One chest will move between spot each day",
+          "coordinates": [
+            19137.75,
+            6716.0605,
+            750.85236
+          ],
+          "map": 1330,
+          "tooltip": null
+        }
+      ]
+    },
+    {
+      "name": "Radiance of the Sun God",
+      "teleports": [
+        {
+          "name": "Find the Shard of Zintl in Wychmire Swamp",
+          "coordinates": [
+            -20437.814,
+            26269.613,
+            173.58456
+          ],
+          "map": 34,
+          "tooltip": null
+        },
+        {
+          "name": "Find Palak's Acolyte in Jelako Cliffrise",
+          "coordinates": [
+            -18072.88,
+            -29049.19,
+            624.07275
+          ],
+          "map": 73,
+          "tooltip": null
+        },
+        {
+          "name": "Speak to the Lepatl chieftain",
+          "coordinates": [
+            -21290.79,
+            -20199.297,
+            1801.6934
+          ],
+          "map": 73,
+          "tooltip": null
+        },
+        {
+          "name": "Track down the Lorantl hylek",
+          "coordinates": [
+            12036.824,
+            4805.7153,
+            48.906067
+          ],
+          "map": 73,
+          "tooltip": null
+        },
+        {
+          "name": "Recover the stolen s hard from the trolls in Risewild Hills",
+          "coordinates": [
+            22585.588,
+            1263.7871,
+            2686.2837
+          ],
+          "map": 73,
+          "tooltip": null
+        },
+        {
+          "name": "Find Palak's acolyte in Viathan's Arm",
+          "coordinates": [
+            -4728.8467,
+            -1060.3773,
+            217.26677
+          ],
+          "map": 23,
+          "tooltip": null
+        },
+        {
+          "name": "Purchase a set of  Dragonfly Steaks from the hylek cook in Michoan Marsh",
+          "coordinates": [
+            2499.5188,
+            1484.7598,
+            6.611801
+          ],
+          "map": 35,
+          "tooltip": null
+        },
+        {
+          "name": "Return to the Togatl chief with the Dragonfly Steaks",
+          "coordinates": [
+            -5025.2104,
+            -1303.8804,
+            190.30296
+          ],
+          "map": 23,
+          "tooltip": null
+        },
+        {
+          "name": "Find Palak's acolyte in the Hunting Banks",
+          "coordinates": [
+            9370.221,
+            -5249.1978,
+            873.871
+          ],
+          "map": 29,
+          "tooltip": null
+        },
+        {
+          "name": "Defeat krait or the krait witch at Nonmoa Lake",
+          "coordinates": [
+            9500.219,
+            -11139.512,
+            74.84261
+          ],
+          "map": 29,
+          "tooltip": "kill krait here when event starts"
+        },
+        {
+          "name": "Or kill the krait witch (event) here",
+          "coordinates": [
+            12369.286,
+            -19779.207,
+            2481.6587
+          ],
+          "map": 29,
+          "tooltip": null
+        },
+        {
+          "name": "Find Palak's acolyte in Whitland Flats",
+          "coordinates": [
+            43365.53,
+            3189.9473,
+            371.77048
+          ],
+          "map": 39,
+          "tooltip": null
+        },
+        {
+          "name": "Uncover the shard in the Inquest reactor by solving the zone puzzle",
+          "coordinates": [
+            36706.336,
+            23462.854,
+            610.69495
+          ],
+          "map": 39,
+          "tooltip": null
+        },
+        {
+          "name": "Seek out the shaman in Astrozintli Forelands",
+          "coordinates": [
+            373.47263,
+            16535.04,
+            1124.309
+          ],
+          "map": 53,
+          "tooltip": null
+        },
+        {
+          "name": "Meditate at the hylek holy site",
+          "coordinates": [
+            41552.68,
+            -19127.896,
+            89.45035
+          ],
+          "map": 39,
+          "tooltip": "/sit near the heart vendor"
+        },
+        {
+          "name": "Return to shaman Huelec",
+          "coordinates": [
+            372.59192,
+            16510.783,
+            1124.805
+          ],
+          "map": 53,
+          "tooltip": null
+        },
+        {
+          "name": "Return to Palak",
+          "coordinates": [
+            22542.15,
+            2665.6187,
+            758.6736
+          ],
+          "map": 1595,
+          "tooltip": null
+        }
+      ]
+    }
+  ],
+  "popout_group_states": {
+    "open_groups": [],
+    "windows": {}
+  },
+  "teleport_to_cursor": false,
+  "death_teleport": true,
+  "personal_waypoint_teleport": false,
+  "next_teleport": false,
+  "prev_teleport": false,
+  "vertical_icons": false,
+  "show_all_wps": false,
+  "disclaimer": false
+}
