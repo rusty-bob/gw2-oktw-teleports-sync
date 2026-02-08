@@ -1,7 +1,11 @@
 use std::io;
 
+pub mod config;
 mod manager;
+pub mod remote;
+pub mod sync;
 mod types;
+pub mod ui;
 
 pub use manager::TeleportManager;
 pub use types::*;
@@ -18,11 +22,11 @@ pub enum TeleportError {
 impl std::fmt::Display for TeleportError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            TeleportError::IoError(e) => write!(f, "IO error: {}", e),
-            TeleportError::JsonError(e) => write!(f, "JSON error: {}", e),
-            TeleportError::GroupNotFound(name) => write!(f, "Teleport group not found: {}", name),
+            TeleportError::IoError(e) => write!(f, "{}", e),
+            TeleportError::JsonError(e) => write!(f, "Invalid JSON: {}", e),
+            TeleportError::GroupNotFound(name) => write!(f, "Group '{}' not found", name),
             TeleportError::GroupAlreadyExists(name) => {
-                write!(f, "Teleport group already exists: {}", name)
+                write!(f, "Group '{}' is already installed", name)
             }
         }
     }

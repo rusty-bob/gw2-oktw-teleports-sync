@@ -1,0 +1,123 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - master
+      - main
+    paths:
+      - 'Cargo.toml'
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.get_version.outputs.version }}
+      version_changed: ${{ steps.check_version.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Get current version
+        id: get_version
+        run: |
+          VERSION=$(grep '^version = ' Cargo.toml | head -1 | sed 's/version = "\(.*\)"/\1/')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Current version: $VERSION"
+
+      - name: Check if version changed
+        id: check_version
+        run: |
+          git diff HEAD^ HEAD -- Cargo.toml > diff.txt
+          if grep -q '^+version = ' diff.txt; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Version changed!"
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "Version not changed, skipping release"
+          fi
+
+  build:
+    needs: check-version
+    if: needs.check-version.outputs.version_changed == 'true'
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache cargo registry
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/registry
+          key: windows-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Cache cargo index
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/git
+          key: windows-cargo-git-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Cache target directory
+        uses: actions/cache@v4
+        with:
+          path: target
+          key: windows-target-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Build release binary
+        run: cargo build --release
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tp_sync-windows-x86_64.exe
+          path: target/release/tp_sync.exe
+
+  create-release:
+    needs: [check-version, build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ needs.check-version.outputs.version }}
+          release_name: Release v${{ needs.check-version.outputs.version }}
+          draft: false
+          prerelease: false
+          body: |
+            ## Teleport Sync Manager v${{ needs.check-version.outputs.version }}
+
+            ### Download
+            - **Windows (x64)**: `tp_sync-windows-x86_64.exe`
+
+            ### Installation
+            1. Download `tp_sync-windows-x86_64.exe`
+            2. Rename to `tp_sync.exe` (optional)
+            3. Run the executable
+
+            ### First Run
+            On first run, you'll be prompted to select your `teleport.json` file.
+
+      - name: Upload Windows Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./artifacts/tp_sync-windows-x86_64.exe/tp_sync.exe
+          asset_name: tp_sync-windows-x86_64.exe
+          asset_content_type: application/octet-stream
+
