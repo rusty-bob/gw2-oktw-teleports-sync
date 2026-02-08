@@ -4,13 +4,6 @@ A TUI tool for managing Guild Wars 2 teleport configurations.
 
 ![Screenshot](image.png)
 
-## What It Does
-
-- Browse local and remote teleport groups
-- Install teleport groups from GitHub repository
-- Delete local teleport groups
-- Sync status indicators (✓ synced, ↑ local only, ↓ remote only, ⟳ modified)
-
 ## Usage
 
 1. Run `tp_sync.exe`
