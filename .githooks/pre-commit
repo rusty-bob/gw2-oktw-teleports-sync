@@ -1,0 +1,67 @@
+#!/bin/sh
+# Pre-commit hook to run formatting, linting, and tests
+# This ensures code quality before committing
+
+echo "🔍 Running pre-commit checks..."
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+# Track if any check failed
+FAILED=0
+
+# 1. Check formatting
+echo "\n📝 Checking code formatting..."
+if ! cargo fmt -- --check; then
+    echo "${RED}❌ Code formatting check failed!${NC}"
+    echo "${YELLOW}💡 Run 'cargo fmt' to fix formatting issues${NC}"
+    FAILED=1
+else
+    echo "${GREEN}✅ Code formatting OK${NC}"
+fi
+
+# 2. Run clippy
+echo "\n🔎 Running clippy linter..."
+if ! cargo clippy -- -D warnings; then
+    echo "${RED}❌ Clippy found issues!${NC}"
+    echo "${YELLOW}💡 Fix the warnings above before committing${NC}"
+    FAILED=1
+else
+    echo "${GREEN}✅ Clippy checks passed${NC}"
+fi
+
+# 3. Run tests
+echo "\n🧪 Running tests..."
+if ! cargo test --quiet; then
+    echo "${RED}❌ Tests failed!${NC}"
+    echo "${YELLOW}💡 Fix failing tests before committing${NC}"
+    FAILED=1
+else
+    echo "${GREEN}✅ All tests passed${NC}"
+fi
+
+# 4. Check if code compiles
+echo "\n🔨 Checking if code compiles..."
+if ! cargo check --quiet; then
+    echo "${RED}❌ Code does not compile!${NC}"
+    FAILED=1
+else
+    echo "${GREEN}✅ Code compiles successfully${NC}"
+fi
+
+# Final result
+echo "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+if [ $FAILED -eq 1 ]; then
+    echo "${RED}❌ Pre-commit checks FAILED${NC}"
+    echo "${YELLOW}Please fix the issues above before committing.${NC}"
+    echo "To skip these checks (not recommended), use: git commit --no-verify"
+    exit 1
+else
+    echo "${GREEN}✅ All pre-commit checks PASSED${NC}"
+    echo "Proceeding with commit..."
+    exit 0
+fi
+
